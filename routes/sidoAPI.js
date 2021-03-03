@@ -7,7 +7,7 @@ const day = require('./day');
 // XML
 const requestUrl = covidAPIurl.URL+
 "SidoInfStateJson?serviceKey=" + covidAPIurl.SERVICE_KEY + 
-"&pageNo=1&numOfRows=10&startCreateDt="+day.yesterday+"&endCreateDt="+day.today;
+"&pageNo=1&numOfRows=10&startCreateDt="+day().yesterday+"&endCreateDt="+day().today;
 
 router.get("/sido", (req, res, next) => {
   request.get(requestUrl, (err, resp, body) => {
@@ -33,7 +33,7 @@ router.get("/sido", (req, res, next) => {
         }
         const data = { today:today, yesday:yesterday };
         res.send(data);
-        console.log("sido api data 연결 성공!");
+        console.log('/sido api 연결 시각 => ' +day().time);
       }
     }
   });

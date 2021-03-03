@@ -9,7 +9,7 @@ const day = require('./day');
 // XML
 const requestUrl = covidAPIurl.URL+
 "GenAgeCaseInfJson?serviceKey=" + covidAPIurl.SERVICE_KEY + 
-"&pageNo=1&numOfRows=10&startCreateDt=20200108&endCreateDt="+day.today;
+"&pageNo=1&numOfRows=10&startCreateDt=20200108&endCreateDt="+day().today;
 
 router.get("/gender", (req, res, next) => {
   request.get(requestUrl, (err, resp, body) => {
@@ -28,7 +28,7 @@ router.get("/gender", (req, res, next) => {
           jsonData.response.body.items.item[10]
         ]
         res.send(genderData);
-        console.log("gender api data 연결 성공!");
+        console.log('/gender api 연결 시각 => ' +day().time);
       }
     }
   });

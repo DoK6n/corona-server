@@ -9,7 +9,7 @@ const day = require('../routes/day');
 // XML
 const requestUrl = covidAPIurl.URL + 
 "NatInfStateJson?serviceKey=" + covidAPIurl.SERVICE_KEY + 
-"&pageNo=1&numOfRows=10&startCreateDt="+day.yesterday+"&endCreateDt="+day.yesterday;
+"&pageNo=1&numOfRows=10&startCreateDt="+day().today+"&endCreateDt="+day().today;
 
 router.get("/global", (req, res, next) => {
   request.get(requestUrl, (err, resp, body) => {
@@ -58,7 +58,7 @@ router.get("/global", (req, res, next) => {
         data.time = as.한국.createDt._text.split('.')[0];
 
         res.send(data);
-        console.log("global api data 연결 성공!");
+        console.log('/global api 연결 시각 => ' +day().time);
       }
     }
   });

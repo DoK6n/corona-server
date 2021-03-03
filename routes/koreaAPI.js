@@ -8,12 +8,13 @@ const day = require("./day");
 // http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=1t9Nx5DMbe9EiysB9UNzj%2FzNhVQ41NetPGOeAvlLvqI4mGzQdjDnfzNo9st7b3b094y2sT1P%2F%2BujRcAf0BG69g%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200108&endCreateDt=20210203
 // XML
 // 오늘
+
 const requestUrl =
   covidAPIurl.URL +
   "InfStateJson?serviceKey=" +
   covidAPIurl.SERVICE_KEY +
   "&pageNo=1&numOfRows=10&startCreateDt=20200108&endCreateDt=" +
-  day.today;
+  day().today;
 
 // 어제
 const requestUrlYDA =
@@ -21,7 +22,7 @@ const requestUrlYDA =
   "InfStateJson?serviceKey=" +
   covidAPIurl.SERVICE_KEY +
   "&pageNo=1&numOfRows=10&startCreateDt=20200108&endCreateDt=" +
-  day.yesterday;
+  day().yesterday;
 
 router.get("/kor", (req, res, next) => {
   request.get(requestUrl, (err, resp, body) => {
@@ -36,7 +37,7 @@ router.get("/kor", (req, res, next) => {
         });
         const jsonData = JSON.parse(result);
         res.send(jsonData.response.body.items.item[0]);
-        console.log("오늘 korea api data 연결 성공!");
+        console.log('/kor api 연결 시각 => ' +day().time);
       }
     }
   });
@@ -55,7 +56,7 @@ router.get("/kor/yda", (req, res, next) => {
         });
         const jsonData = JSON.parse(result);
         res.send(jsonData.response.body.items.item[0]);
-        console.log("어제 korea api data 연결 성공!");
+        console.log('/kor/yda api 연결 시각 => ' +day().time);
       }
     }
   });

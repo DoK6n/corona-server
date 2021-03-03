@@ -1,27 +1,34 @@
-const date = new Date();
-const ydate = new Date();
+const datetime = () => {
+  const date = new Date();
+  const ydate = new Date();
 
-let year = date.getFullYear();
-let month = date.getMonth() + 1;
-let day = date.getDate();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
 
-month = month < 10 ? "0" + month : month;
-day = day < 10 ? "0" + day : day;
+  month = month < 10 ? "0" + month : month;
+  day = day < 10 ? "0" + day : day;
 
-const today = year + "" + month + "" + day;
+  const today = year + "" + month + "" + day;
 
-let yesterdate = ydate.getTime() - 1 * 24 * 60 * 60 * 1000;
-ydate.setTime(yesterdate);
-const ydyear = ydate.getFullYear();
-let ydmonth = ydate.getMonth() + 1;
-let yday = ydate.getDate();
+  let yesterdate = ydate.getTime() - 1 * 24 * 60 * 60 * 1000;
+  ydate.setTime(yesterdate);
+  const ydyear = ydate.getFullYear();
+  let ydmonth = ydate.getMonth() + 1;
+  let yday = ydate.getDate();
 
-ydmonth = ydmonth < 10 ? "0" + ydmonth : ydmonth;
-yday = yday < 10 ? "0" + yday : yday;
+  ydmonth = ydmonth < 10 ? "0" + ydmonth : ydmonth;
+  yday = yday < 10 ? "0" + yday : yday;
 
-const yesterday = ydyear + "" + ydmonth + "" + yday;
+  const yesterday = ydyear + "" + ydmonth + "" + yday;
+  
+  const time = today+' | '+date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
-module.exports = {
-  today: today,
-  yesterday: yesterday,
-};
+  return {
+    today: today,
+    yesterday: yesterday,
+    time: time
+  }
+}
+
+module.exports = datetime;
