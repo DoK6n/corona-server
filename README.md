@@ -1,3 +1,4 @@
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/DoK6n/corona-server)
 # 코로나 감염현황 사이트 ( 백엔드 )
 
 <br>
